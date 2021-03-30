@@ -13,7 +13,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 
 const config = {
   nodeEnv: process.env.NODE_ENV || 'development',
-  webpackDevServerPort: parseInt(process.env.WEBPACK_DEV_SERVER_PORT || '3333', 10),
+  webpackDevServerPort: parseInt(process.env.WEBPACK_DEV_SERVER_PORT || '8080', 10),
 }
 
 module.exports = {
