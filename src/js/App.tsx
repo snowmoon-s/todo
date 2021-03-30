@@ -169,13 +169,21 @@ export const App = () => {
         </div>
         <p className={classes.error}>{err ? err : ''}</p>
         <div>
-          {group.map(list => {
+          {group.map((list, i) => {
             return (
-              <div key={list.id} className={classes.cardContainer}>
+              <div key={i} className={classes.cardContainer}>
                 <p>{list.name}</p>
                 {list.tasks ? (
-                  list.tasks.map(task => {
-                    return <Cards task={task} key={list.id} updateTaskName={updateTaskName} removeTask={removeTask} />
+                  list.tasks.map((task, iKey) => {
+                    return (
+                      <Cards
+                        task={task}
+                        key={iKey}
+                        updateTaskName={updateTaskName}
+                        removeTask={removeTask}
+                        groupId={list.id}
+                      />
+                    )
                   })
                 ) : (
                   <p>タスクを入力してください</p>
@@ -183,7 +191,6 @@ export const App = () => {
               </div>
             )
           })}
-          )
         </div>
       </main>
     </>

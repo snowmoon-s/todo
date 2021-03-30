@@ -27,18 +27,19 @@ const useStyles = makeStyles(theme => ({
 
 interface Props {
   task: Task
-  updateTaskName: (name: string, id: number) => void
-  removeTask: (id: number) => void
+  groupId: number
+  updateTaskName: (name: string, id: number, groupId: number) => void
+  removeTask: (id: number, groupId: number) => void
 }
 
-export const Cards = ({ task, updateTaskName, removeTask }: Props) => {
+export const Cards = ({ task, groupId, updateTaskName, removeTask }: Props) => {
   const classes = useStyles()
   const [isEditing, setIsEditing] = useState(false)
   const [inputTask, setInputTask] = useState(task.name)
 
   const handleDone = () => {
     setIsEditing(false)
-    updateTaskName(inputTask, task.id)
+    updateTaskName(inputTask, task.id, groupId)
     setInputTask(task.name)
   }
 
@@ -58,7 +59,7 @@ export const Cards = ({ task, updateTaskName, removeTask }: Props) => {
         <div className={classes.cardContainer}>
           <CardContent className={classes.cardTitle}>{task.name}</CardContent>
           <Button onClick={() => setIsEditing(true)}>{<Edit />}</Button>
-          <Button onClick={() => removeTask(task.id)}>{<DeleteForever />}</Button>
+          <Button onClick={() => removeTask(task.id, groupId)}>{<DeleteForever />}</Button>
         </div>
       )}
     </Card>
